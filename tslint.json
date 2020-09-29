@@ -1,0 +1,12 @@
+{
+  "rules": {
+    "no-submodule-imports": false,
+    "no-duplicate-imports": false,
+    "react-hooks-nesting": "error"
+  },
+  "extends": [
+    "tslint:latest",
+    "tslint-config-prettier",
+    "tslint-react-hooks"
+  ]
+}
