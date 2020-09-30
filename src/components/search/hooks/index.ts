@@ -1,34 +1,6 @@
 import { createContext, Reducer, useContext, useReducer } from "react";
-
-type SEARCH_ACTIONS = "SEARCH_START" | "SEARCH_SUCCESS" | "SEARCH_ERROR";
-
-interface ACTIONS {
-  type: SEARCH_ACTIONS;
-  data: any;
-}
-
-interface ISearchState {
-  query: string;
-  limit: number;
-}
-
-/**
- * Search reducer handles search actions.
- *
- * @param state
- * @param action
- */
-const searchReducer = (state: ISearchState, action: ACTIONS) => {
-  switch (action.type) {
-    case "SEARCH_START":
-      return {
-        ...state,
-        query: action.data,
-      };
-  }
-
-  return state;
-};
+import { ISearchState, ACTIONS } from "./types";
+import { reducer } from "./reducer";
 
 /**
  * Search context.
@@ -36,8 +8,12 @@ const searchReducer = (state: ISearchState, action: ACTIONS) => {
 export const SearchContext = createContext<{
   state: ISearchState;
   search: (query: string) => void;
+  limit: (limit: number) => void;
+  offset: (offset: number) => void;
 }>({
-  state: { query: "", limit: 0 },
+  state: { query: "", limit: 0, offset: 0 },
+  limit: (limit: number) => {},
+  offset: (offset: number) => {},
   search: (query: string) => {},
 });
 
@@ -52,15 +28,17 @@ export const useSearchContext = () => useContext(SearchContext);
  */
 export const useSearch = () => {
   const [state, dispatch] = useReducer<Reducer<ISearchState, ACTIONS>>(
-    searchReducer,
+    reducer,
     {
       query: "",
       limit: 3,
+      offset: 0,
     }
   );
 
-  const search = (query: string) =>
-    dispatch({ type: "SEARCH_START", data: query });
+  const search = (query: string) => dispatch({ type: "SET_SEARCH", query });
+  const limit = (limit: number) => dispatch({ type: "SET_LIMIT", limit });
+  const offset = (offset: number) => dispatch({ type: "SET_OFFSET", offset });
 
-  return { state, search };
+  return { state, search, limit, offset };
 };

@@ -1,20 +1,55 @@
-import { createContext, Reducer, useContext, useReducer } from "react";
+import {
+  createContext,
+  Reducer,
+  useContext,
+  useEffect,
+  useReducer,
+} from "react";
+import { reducer } from "./reducer";
+import { IStorage, IFavouriteState, ACTIONS } from "./types";
 
-interface IFavouriteItem {
-  id: string;
-  meta: object;
-}
+/**
+ * Use favourites hooks.
+ * @param {IStorage} storage If provided can is used when adding/removing favourite.
+ *
+ * It's assumed that IStorage add/remove are sync operations.
+ */
+export const useFavourites = ({ storage }: { storage?: IStorage }) => {
+  const [state, dispatch] = useReducer<Reducer<IFavouriteState, ACTIONS>>(
+    reducer,
+    {
+      favourites: new Map<string, object>(),
+    }
+  );
 
-interface IFavouriteState {
-  favourites: IFavouriteItem[];
-}
+  useEffect(() => {
+    if (!storage) {
+      return;
+    }
 
-type FAVOURITE_ACTIONS = "FAVOURITE_ADD" | "FAVOURITE_REMOVE";
+    dispatch({ type: "SET_FAVOURITES", data: storage.getAll() });
+  }, [storage]);
 
-interface ACTIONS {
-  type: FAVOURITE_ACTIONS;
-  data: any;
-}
+  const add = (id: string, meta: any) => {
+    if (storage && !state.favourites.has(id)) {
+      storage.add(id, meta);
+    }
+
+    dispatch({
+      type: "FAVOURITE_ADD",
+      data: { id, meta: meta },
+    });
+  };
+  const remove = (id: string) => {
+    if (storage && state.favourites.has(id)) {
+      storage.remove(id);
+    }
+
+    dispatch({ type: "FAVOURITE_REMOVE", data: id });
+  };
+
+  return { state, add, remove };
+};
 
 /**
  * Favourite context.
@@ -25,56 +60,13 @@ interface ACTIONS {
  *
  */
 export const FavouriteContext = createContext<{
-  state: IFavouriteState;
-  add: (id: string) => void;
+  state: { favourites: Map<string, object> };
+  add: (id: string, data: object) => void;
   remove: (id: string) => void;
 }>({
-  state: { favourites: [] },
-  add: (id: string) => {},
+  state: { favourites: new Map<string, object>() },
+  add: (id: string, data: object) => {},
   remove: (id: string) => {},
 });
 
-/**
- * Favourites reducer handles favourites actions.
- *
- * @param state
- * @param action
- */
-export const reducer = (state: IFavouriteState, action: ACTIONS) => {
-  switch (action.type) {
-    case "FAVOURITE_ADD":
-      return {
-        ...state,
-        query: action.data,
-      };
-    case "FAVOURITE_REMOVE":
-      return {
-        ...state,
-        query: action.data,
-      };
-  }
-
-  return state;
-};
-
 export const useFavouriteContext = () => useContext(FavouriteContext);
-
-/**
- * Use favourite hook.
- *
- *
- */
-export const useFavourites = () => {
-  const [state, dispatch] = useReducer<Reducer<IFavouriteState, ACTIONS>>(
-    reducer,
-    {
-      favourites: [],
-    }
-  );
-
-  const add = (id: string) => dispatch({ type: "FAVOURITE_ADD", data: id });
-  const remove = (id: string) =>
-    dispatch({ type: "FAVOURITE_REMOVE", data: id });
-
-  return { state, add, remove };
-};

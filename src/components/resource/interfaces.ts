@@ -23,6 +23,6 @@ export interface IGif extends IImage {
   embed_url: string;
 }
 
-export interface IGifApiResponse {
+export interface IGiphyApiResponse {
   data: IGif[];
 }

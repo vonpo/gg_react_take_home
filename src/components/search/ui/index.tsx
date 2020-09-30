@@ -10,11 +10,6 @@ import makeStyles from "@material-ui/core/styles/makeStyles";
 
 const useStyles = makeStyles((theme: Theme) =>
   createStyles({
-    root: {
-      padding: "2px 4px",
-      margin: "24px auto",
-      maxWidth: 500,
-    },
     input: {
       marginLeft: theme.spacing(1),
       flex: 1,
@@ -29,6 +24,7 @@ const useStyles = makeStyles((theme: Theme) =>
     form: {
       display: "flex",
       alignItems: "center",
+      maxWidth: 500,
     },
   })
 );
@@ -49,31 +45,29 @@ const Search: FunctionComponent<SearchProps> = ({ onSubmit, searchRef }) => {
   const classes = useStyles();
 
   return (
-    <Paper className={classes.root}>
-      <form
-        noValidate
-        autoComplete="off"
-        className={classes.form}
-        onSubmit={onSubmit}
+    <form
+      noValidate
+      autoComplete="off"
+      className={classes.form}
+      onSubmit={onSubmit}
+    >
+      <IconButton className={classes.iconButton} aria-label="menu">
+        <MenuIcon />
+      </IconButton>
+      <InputBase
+        inputRef={searchRef}
+        className={classes.input}
+        placeholder="search gifs!"
+        inputProps={{ "aria-label": "search gifs!" }}
+      />
+      <IconButton
+        type="submit"
+        className={classes.iconButton}
+        aria-label="search"
       >
-        <IconButton className={classes.iconButton} aria-label="menu">
-          <MenuIcon />
-        </IconButton>
-        <InputBase
-          inputRef={searchRef}
-          className={classes.input}
-          placeholder="search gifs!"
-          inputProps={{ "aria-label": "search gifs!" }}
-        />
-        <IconButton
-          type="submit"
-          className={classes.iconButton}
-          aria-label="search"
-        >
-          <SearchIcon />
-        </IconButton>
-      </form>
-    </Paper>
+        <SearchIcon />
+      </IconButton>
+    </form>
   );
 };
 /**
