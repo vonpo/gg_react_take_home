@@ -5,7 +5,7 @@ import * as fetch from "isomorphic-fetch";
 interface IResource<T> {
   url: string;
   render: (data: T) => ReactNode;
-  onNextDataLoaded?: () => void;
+  onDataLoaded?: (next: boolean, data: T) => void;
   nextUrl?: string;
   nextDataMerge?: (next: T, current?: T) => T;
 }
@@ -19,7 +19,7 @@ interface IResource<T> {
  * @param {string} url
  * @param {string} [nextUrl]
  * @param {function} [nextDataMerge]
- * @param {function} [onNextDataLoaded]
+ * @param {function} [onDataLoaded]
  *
  * @constructor
  */
@@ -28,7 +28,7 @@ export const Resource = <T extends object>({
   url,
   nextUrl,
   nextDataMerge,
-  onNextDataLoaded,
+  onDataLoaded,
 }: IResource<T>) => {
   const [isLoading, setIsLoading] = useState<boolean>(true);
   const [remoteData, setRemoteData] = useState<T>();
@@ -49,7 +49,7 @@ export const Resource = <T extends object>({
         let merged = nextDataMerge(more, remoteData);
 
         setRemoteData(merged);
-        onNextDataLoaded && onNextDataLoaded();
+        onDataLoaded && onDataLoaded(true, more);
       }
 
       setIsLoading(false);
@@ -62,7 +62,9 @@ export const Resource = <T extends object>({
     (async function () {
       const response = await fetch(url);
       if (response.ok) {
-        setRemoteData(await response.json());
+        const remoteData = await response.json();
+        setRemoteData(remoteData);
+        onDataLoaded && onDataLoaded(false, remoteData);
       }
 
       setIsLoading(false);
@@ -78,9 +80,9 @@ export const Resource = <T extends object>({
   }
 
   return (
-    <>
+    <div>
       {render(remoteData)}
       {canLoadMore && <button onClick={loadMore}>load</button>}
-    </>
+    </div>
   );
 };

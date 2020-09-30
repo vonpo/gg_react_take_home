@@ -1,12 +1,20 @@
-import { FormEvent, FunctionComponent, RefObject, useRef } from "react";
+import {
+  FormEvent,
+  FunctionComponent,
+  RefObject,
+  useEffect,
+  useRef,
+} from "react";
 import * as React from "react";
-import { useSearchContext } from "../hooks";
 import { createStyles, Paper, Theme } from "@material-ui/core";
 import IconButton from "@material-ui/core/IconButton";
 import InputBase from "@material-ui/core/InputBase";
-import MenuIcon from "@material-ui/icons/Menu";
-import SearchIcon from "@material-ui/icons/Search";
+import { SearchIcon } from "../assets";
+import { useHistory } from "react-router-dom";
+
 import makeStyles from "@material-ui/core/styles/makeStyles";
+import { useDetectPath } from "../../route";
+import { useSearchContext } from "../hooks";
 
 const useStyles = makeStyles((theme: Theme) =>
   createStyles({
@@ -24,7 +32,7 @@ const useStyles = makeStyles((theme: Theme) =>
     form: {
       display: "flex",
       alignItems: "center",
-      maxWidth: 500,
+      flex: 1,
     },
   })
 );
@@ -51,22 +59,21 @@ const Search: FunctionComponent<SearchProps> = ({ onSubmit, searchRef }) => {
       className={classes.form}
       onSubmit={onSubmit}
     >
-      <IconButton className={classes.iconButton} aria-label="menu">
-        <MenuIcon />
-      </IconButton>
       <InputBase
         inputRef={searchRef}
         className={classes.input}
-        placeholder="search gifs!"
-        inputProps={{ "aria-label": "search gifs!" }}
+        placeholder="search all the GIFs"
+        inputProps={{ "aria-label": "search all the GIFs" }}
+        endAdornment={
+          <IconButton
+            type="submit"
+            className={classes.iconButton}
+            aria-label="search"
+          >
+            <SearchIcon height={33} width={33} />
+          </IconButton>
+        }
       />
-      <IconButton
-        type="submit"
-        className={classes.iconButton}
-        aria-label="search"
-      >
-        <SearchIcon />
-      </IconButton>
     </form>
   );
 };
@@ -78,12 +85,23 @@ const Search: FunctionComponent<SearchProps> = ({ onSubmit, searchRef }) => {
  * @constructor
  */
 export const SearchContainer: FunctionComponent = () => {
+  const { state } = useSearchContext();
   const searchRef = useRef<HTMLInputElement>(null);
-  const { search } = useSearchContext();
+  const history = useHistory();
+
   const onSubmit = (event: FormEvent<HTMLFormElement>) => {
     event.preventDefault();
-    search(searchRef.current?.value || "");
+
+    if (searchRef.current?.value) {
+      history.push(`/?search=${searchRef.current?.value}`);
+    }
   };
+
+  useEffect(() => {
+    if (searchRef.current) {
+      searchRef.current.value = state.query;
+    }
+  }, [state.query]);
 
   return <Search onSubmit={onSubmit} searchRef={searchRef} />;
 };

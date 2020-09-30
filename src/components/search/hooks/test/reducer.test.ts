@@ -9,6 +9,7 @@ describe("Search reducer test", () => {
         limit: 0,
         offset: 0,
         query: "",
+        found: 0,
       },
       { type: "SET_SEARCH", query }
     );
@@ -16,12 +17,13 @@ describe("Search reducer test", () => {
     expect(state.query).to.equal(query);
   });
 
-  it("Search should reset offset", () => {
+  it("Search should reset offset and found", () => {
     const query = "test";
     const state = reducer(
       {
         limit: 0,
         offset: 5,
+        found: 5,
         query: "",
       },
       { type: "SET_SEARCH", query }
@@ -29,6 +31,7 @@ describe("Search reducer test", () => {
 
     expect(state.query).to.equal(query);
     expect(state.offset).to.equal(0);
+    expect(state.found).to.equal(0);
   });
 
   it("Should set search limit", () => {
@@ -37,6 +40,7 @@ describe("Search reducer test", () => {
       {
         limit: 0,
         offset: 0,
+        found: 0,
         query: "",
       },
       { type: "SET_LIMIT", limit }
@@ -51,6 +55,7 @@ describe("Search reducer test", () => {
       {
         limit: 0,
         offset: 0,
+        found: 0,
         query: "",
       },
       { type: "SET_OFFSET", offset }

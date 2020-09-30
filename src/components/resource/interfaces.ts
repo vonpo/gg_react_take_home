@@ -1,5 +1,6 @@
 export interface IImage {
   id: string;
+  url: string;
   images: {
     fixed_width: {
       url: string;

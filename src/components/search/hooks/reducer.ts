@@ -13,6 +13,7 @@ export const reducer = (state: ISearchState, action: ACTIONS) => {
         ...state,
         query: action.query,
         offset: 0,
+        fount: 0,
       };
     case "SET_OFFSET":
       return {
@@ -23,6 +24,11 @@ export const reducer = (state: ISearchState, action: ACTIONS) => {
       return {
         ...state,
         limit: action.limit,
+      };
+    case "SET_FOUND":
+      return {
+        ...state,
+        found: action.found,
       };
   }
 
