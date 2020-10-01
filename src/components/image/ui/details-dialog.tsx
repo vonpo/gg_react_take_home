@@ -47,6 +47,14 @@ const useStyles = makeStyles((theme) => ({
       textAlign: "center",
     },
   },
+  imageContainer: {
+    "& img": {
+      maxWidth: "100%",
+    },
+    "& span": {
+      maxWidth: "100%",
+    },
+  },
 }));
 
 /**
@@ -87,6 +95,7 @@ export const DetailsDialog: FunctionComponent<{
           md={8}
           item
           alignItems="center"
+          className={styles.imageContainer}
         >
           <Typography variant="h5" className={styles.title}>
             {image.title}

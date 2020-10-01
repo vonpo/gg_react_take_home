@@ -8,6 +8,12 @@ import { CopyLinkContainer } from "../../copyLink";
 import { ButtonBase } from "@material-ui/core";
 import { DetailsDialog } from "./details-dialog";
 
+const useStyles = makeStyles({
+  imageContainer: {
+    maxWidth: "calc(100vw - 20px)",
+  },
+});
+
 /**
  * Display image/gif.
  *
@@ -27,22 +33,23 @@ export const Image: FunctionComponent<{
   thumbnail: boolean;
 }> = ({ image, thumbnail }) => {
   const displayImage = thumbnail ? image.images.small : image.images.main;
+  const styles = useStyles();
 
   return (
     <div style={{ position: "relative" }}>
       <Skeleton
         variant="rect"
+        className={styles.imageContainer}
         style={{
-          maxWidth: "calc(100vw - 20px)",
           position: "absolute",
           width: displayImage.width + "px",
           height: displayImage.height + "px",
         }}
       />
       <img
+        className={styles.imageContainer}
         src={displayImage.url}
         style={{
-          maxWidth: "calc(100vw - 20px)",
           width: displayImage.width + "px",
           height: displayImage.height + "px",
         }}
