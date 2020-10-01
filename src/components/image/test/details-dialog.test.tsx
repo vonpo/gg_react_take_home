@@ -15,12 +15,16 @@ describe("<DetailsDialog/> spec", () => {
   });
 
   it("should render details dialog", () => {
-    const onClick = sinon.spy();
     const image: IImage = {
       title: "test",
       id: "test",
       images: {
         main: {
+          height: 1,
+          width: 1,
+          url: "",
+        },
+        small: {
           height: 1,
           width: 1,
           url: "",

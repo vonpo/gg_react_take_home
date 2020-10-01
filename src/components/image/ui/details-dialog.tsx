@@ -91,7 +91,7 @@ export const DetailsDialog: FunctionComponent<{
           <Typography variant="h5" className={styles.title}>
             {image.title}
           </Typography>
-          <Image image={image} />
+          <Image image={image} thumbnail={false} />
           <InputBase
             value={image.url}
             disabled={true}

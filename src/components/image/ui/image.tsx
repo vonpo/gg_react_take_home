@@ -15,26 +15,38 @@ import { DetailsDialog } from "./details-dialog";
  *
  * Alternatively we could listen image.load event and re-render component when images is loaded.
  *
+ * To prevent displaying large images(gifs) use `thumbnail` flag which render image.small property.
  *
  * @param {IImage} gif
+ * @param {boolean} thumbnail
  *
  * @constructor
  */
-export const Image: FunctionComponent<{ image: IImage }> = ({ image }) => {
-  const displayImage = image.images.main;
+export const Image: FunctionComponent<{
+  image: IImage;
+  thumbnail: boolean;
+}> = ({ image, thumbnail }) => {
+  const displayImage = thumbnail ? image.images.small : image.images.main;
 
   return (
     <div style={{ position: "relative" }}>
       <Skeleton
         variant="rect"
         style={{
-          maxWidth: "calc(100% - 20px)",
+          maxWidth: "calc(100vw - 20px)",
           position: "absolute",
           width: displayImage.width + "px",
           height: displayImage.height + "px",
         }}
       />
-      <img src={displayImage.url} style={{ maxWidth: "calc(100% - 20px)" }} />
+      <img
+        src={displayImage.url}
+        style={{
+          maxWidth: "calc(100vw - 20px)",
+          width: displayImage.width + "px",
+          height: displayImage.height + "px",
+        }}
+      />
     </div>
   );
 };
@@ -88,7 +100,7 @@ export const ImageWithOptions: FunctionComponent<{ image: IImage }> = ({
         handleClose={() => setAreDetailsShown(false)}
       />
       <ButtonBase onClick={() => setAreDetailsShown(true)}>
-        <Image image={image} />
+        <Image image={image} thumbnail={true} />
       </ButtonBase>
     </div>
   );

@@ -12,5 +12,10 @@ export interface IImage {
       height: number;
       width: number;
     };
+    small: {
+      url: string;
+      height: number;
+      width: number;
+    };
   };
 }

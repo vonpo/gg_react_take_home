@@ -23,6 +23,11 @@ describe("<ImageWithOptions/> spec", () => {
           width: 1,
           url: "",
         },
+        small: {
+          height: 1,
+          width: 1,
+          url: "",
+        },
       },
       url: "",
     };
@@ -38,6 +43,11 @@ describe("<ImageWithOptions/> spec", () => {
       id: "test",
       images: {
         main: {
+          height: 1,
+          width: 1,
+          url: "",
+        },
+        small: {
           height: 1,
           width: 1,
           url: "",

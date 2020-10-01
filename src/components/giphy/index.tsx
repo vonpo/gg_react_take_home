@@ -74,6 +74,11 @@ function mapGiphyToImage(response: IGiphyApiResponse): IImage[] {
         height: gif.images.fixed_height.height,
         width: gif.images.fixed_height.width,
       },
+      small: {
+        url: gif.images.fixed_height_downsampled.url,
+        height: gif.images.fixed_height_downsampled.height,
+        width: gif.images.fixed_height_downsampled.width,
+      },
     },
   }));
 }

@@ -11,7 +11,11 @@ Goal of this app is to create app when user can display GIF and store them so wh
 App downloads gifs from Giphy api with those endpoints:
 
 Search gif by terms: `https://developers.giphy.com/docs/api/endpoint#search`
+
 Get trending gifs: `https://developers.giphy.com/docs/api/endpoint#trending`
+
+Gifs are quite huge and displaying many gifs at once with full size and quality could make browser slow.
+Giphy provides downsized gifs and those are used in main image grid.
 
 Gifs are displayed by `<InfiniteScrollResource />` this is generic component that loads given `url` and renders it using `render` prop.
 It was designed to render any given url and render any view.
@@ -25,7 +29,8 @@ App is splitted into two routes with `react-router-dom`:
 Both components `GiphyGalleryContainer` and `GiphyGalleryContainer` are containers for `<ImageGrid />`
 
 `<ImageGrid ImageView={Component}/>` component  iterates through image list and passes image data to `ImageView` component. 
-`ImageGrid` main purpose it setup layout for images. 
+
+`<Image />` component can render small or main image with `thumbnail flag parameter.
 
 Favourites state is managed by `FavouriteContext` which is exposed by `useFavourites` with following properties:
 ```
@@ -81,7 +86,7 @@ then this won't work.
 Gallery has horizontal layout. (created with css flex)
 
 ## Favourites
-Favourites are saved local storage they have all data that is returned by Giphy api.
+Favourites are saved in local storage they only partial data that is returned by Giphy api.
 There is risk that user can exceed this limit! 
 
 # tech stack
