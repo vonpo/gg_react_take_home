@@ -20,8 +20,8 @@ export const mainTheme = createMuiTheme({
       xs: 0,
       sm: 800, // redefine small breakpoints as 800px is size when we need to change from row to column <SectionWithImage>
       md: 1000,
-      lg: 1250,
-      xl: 1200,
+      lg: 1200,
+      xl: 1400,
     },
   },
   palette: {

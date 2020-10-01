@@ -16,6 +16,14 @@ const useStyle = makeStyles((theme) => ({
       padding: "0 10px",
     },
   },
+  header: {
+    [theme.breakpoints.down("lg")]: {
+      paddingLeft: 60,
+    },
+  },
+  searchBox: {
+    flex: 1,
+  },
 }));
 
 export const Header: FunctionComponent = () => {
@@ -30,14 +38,14 @@ export const Header: FunctionComponent = () => {
         alignItems="center"
         className={styles.search}
       >
-        <Grid item xs={12} md={3}>
+        <Grid item className={styles.header}>
           <Link to="/" style={{ textDecoration: "none" }}>
             <Typography variant="h1" style={{ marginRight: 25 }}>
-              M-GLIPHY
+              M-GIPHY
             </Typography>
           </Link>
         </Grid>
-        <Grid item xs={12} md={9}>
+        <Grid item className={styles.searchBox}>
           <SearchContainer />
         </Grid>
       </Grid>

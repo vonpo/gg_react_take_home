@@ -1,6 +1,6 @@
 import { ISearchState } from "../search/hooks/types";
 import { IImage } from "../image/interfaces";
-import { FunctionComponent, useEffect, useState } from "react";
+import { FunctionComponent, memo, useEffect, useState } from "react";
 import { useSearchContext } from "../search/hooks";
 import { FavouriteContext, useFavourites } from "../favourite/hooks";
 import { LocalStorage } from "../storage";
@@ -75,23 +75,26 @@ function mapGiphyToImage(response: IGiphyApiResponse): IImage[] {
         width: gif.images.fixed_height.width,
       },
       small: {
-        url: gif.images.fixed_height_downsampled.url,
-        height: gif.images.fixed_height_downsampled.height,
-        width: gif.images.fixed_height_downsampled.width,
+        url: gif.images.fixed_width_downsampled.url,
+        height: gif.images.fixed_width_downsampled.height,
+        width: gif.images.fixed_width_downsampled.width,
       },
     },
   }));
 }
 
-const useStyles = makeStyles({
+const useStyles = makeStyles((theme) => ({
   header: {
     marginTop: 84,
     marginBottom: 40,
+    [theme.breakpoints.down("lg")]: {
+      paddingLeft: 60,
+    },
   },
   label: {
     marginLeft: 10,
   },
-});
+}));
 
 const GalleryHeader: FunctionComponent<{
   displaySearchResults: boolean;
@@ -118,6 +121,15 @@ const GalleryHeader: FunctionComponent<{
 };
 
 /**
+ * Save re-renders and only re-render if api response changes.
+ */
+const ImageGridGalleryMemoized: FunctionComponent<{
+  response: IGiphyApiResponse;
+}> = React.memo(({ response }) => (
+  <ImageGrid images={mapGiphyToImage(response)} ImageView={ImageWithOptions} />
+));
+
+/**
  * This component connects gallery container and the view which is used to render image inside gallery.
  *
  * @constructor
@@ -133,8 +145,9 @@ export const GiphyGalleryContainer: FunctionComponent = () => {
   const [resourceUrl, setResourceUrl] = useState<{ url: string; next: string }>(
     generateResourceUrl(state, getGiphyQueryUrl)
   );
-  const onDataLoaded = (response: IGiphyApiResponse) =>
+  const onDataLoaded = (response: IGiphyApiResponse) => {
     setFoundAction(response.data.length);
+  };
   const onNextDataLoaded = (_: IGiphyApiResponse) =>
     setOffsetAction(state.limit + state.offset);
   const canLoadMore = (apiResponse: IGiphyApiResponse) => {
@@ -165,10 +178,7 @@ export const GiphyGalleryContainer: FunctionComponent = () => {
         url={resourceUrl.url}
         nextUrl={resourceUrl.next}
         render={(response: IGiphyApiResponse) => (
-          <ImageGrid
-            images={mapGiphyToImage(response)}
-            ImageView={ImageWithOptions}
-          />
+          <ImageGridGalleryMemoized response={response} />
         )}
         onCanLoadMore={canLoadMore}
         nextDataMerge={nextDataMerge}

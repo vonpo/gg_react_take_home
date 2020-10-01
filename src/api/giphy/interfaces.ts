@@ -29,6 +29,11 @@ export interface IGif {
       height: number;
       width: number;
     };
+    fixed_width_downsampled: {
+      url: string;
+      height: number;
+      width: number;
+    };
   };
 }
 

@@ -37,7 +37,7 @@ const useStyle = makeStyles((theme) => ({
   root: {
     minHeight: "100vh",
     display: "grid",
-    gridTemplateColumns: "auto 1200px auto",
+    gridTemplateColumns: "1fr 1200px 1fr",
     gridTemplateRows: "78px auto",
     gridTemplateAreas: '"empty header fav" "left gallery right"',
     // https://developer.mozilla.org/en-US/docs/Web/CSS/overflow-anchor/Guide_to_scroll_anchoring
