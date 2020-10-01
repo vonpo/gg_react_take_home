@@ -1,4 +1,4 @@
-const STORAGE_KEY = "fav-app:v2";
+const STORAGE_KEY = "fav-app:v3";
 
 /**
  * Get all local storage elements.

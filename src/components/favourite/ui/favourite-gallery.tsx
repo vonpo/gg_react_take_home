@@ -14,12 +14,15 @@ import Grid from "@material-ui/core/Grid";
 import { Typography } from "@material-ui/core";
 import makeStyles from "@material-ui/core/styles/makeStyles";
 
-const useStyles = makeStyles({
+const useStyles = makeStyles((theme) => ({
   header: {
     marginTop: 84,
     marginBottom: 40,
+    [theme.breakpoints.down("lg")]: {
+      paddingLeft: 60,
+    },
   },
-});
+}));
 const FavouriteGallery: FunctionComponent = () => {
   const { state } = useFavouriteContext();
 
