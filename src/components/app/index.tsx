@@ -4,7 +4,12 @@ import { Route, useLocation } from "react-router-dom";
 import { GiphyGalleryContainer } from "../giphy";
 import { FavouriteGalleryContainer } from "../favourite/ui/favourite-gallery";
 import * as React from "react";
-import { SearchContext, useSearch } from "../search/hooks";
+import { SearchContext, useSearch } from "../search";
+import {
+  Notification,
+  NotificationContext,
+  useNotification,
+} from "../notification";
 import makeStyles from "@material-ui/core/styles/makeStyles";
 
 const useStyle = makeStyles((theme) => ({
@@ -63,6 +68,7 @@ const getSearchParams = (search: string, paramName: string): string => {
  */
 export const AppLayoutContainer: FunctionComponent = () => {
   const location = useLocation();
+  const notification = useNotification();
   const searchContext = useSearch({
     searchQuery: getSearchParams(location.search, "search"),
   });
@@ -70,15 +76,18 @@ export const AppLayoutContainer: FunctionComponent = () => {
 
   return (
     <SearchContext.Provider value={searchContext}>
-      <div className={styles.root}>
-        <Header />
-        <div className={styles.gallery}>
-          <Route path="/" component={GiphyGalleryContainer} exact />
-          <Route path="/favourite" component={FavouriteGalleryContainer} />
+      <NotificationContext.Provider value={notification}>
+        <div className={styles.root}>
+          <Header />
+          <div className={styles.gallery}>
+            <Route path="/" component={GiphyGalleryContainer} exact />
+            <Route path="/favourite" component={FavouriteGalleryContainer} />
+            <Notification />
+          </div>
+          <div className={styles.left} />
+          <div className={styles.right} />
         </div>
-        <div className={styles.left} />
-        <div className={styles.right} />
-      </div>
+      </NotificationContext.Provider>
     </SearchContext.Provider>
   );
 };

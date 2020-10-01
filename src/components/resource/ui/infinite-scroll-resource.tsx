@@ -5,6 +5,7 @@ import { Grid } from "@material-ui/core";
 import { LoadingIcon } from "../assets";
 import Typography from "@material-ui/core/Typography";
 import fetch from "isomorphic-fetch";
+import { logger } from "../../logger/logger";
 
 interface IInfiniteScrollResource<T> {
   url: string;
@@ -17,10 +18,16 @@ interface IInfiniteScrollResource<T> {
 }
 
 const getResource = async (resourceUrl: string) => {
-  const response = await fetch(resourceUrl);
+  try {
+    const response = await fetch(resourceUrl);
 
-  if (response.ok) {
-    return { resource: await response.json() };
+    if (response.ok) {
+      return { resource: await response.json() };
+    }
+  } catch (error) {
+    logger.error(error);
+
+    return { resource: null };
   }
 };
 
