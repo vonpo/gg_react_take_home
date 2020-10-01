@@ -5,14 +5,9 @@ const Dotenv = require("dotenv-webpack");
 
 module.exports = (env = {}) => {
   return {
-    mode: "development",
+    mode: "production",
     entry: {
       app: "./src/index.tsx",
-    },
-    devtool: "inline-source-map",
-    devServer: {
-      contentBase: "./dist",
-      historyApiFallback: true,
     },
     output: {
       filename: "[name].[contenthash].js",
@@ -30,6 +25,7 @@ module.exports = (env = {}) => {
     ],
     optimization: {
       runtimeChunk: "single",
+      usedExports: true,
       splitChunks: {
         chunks: "all",
       },

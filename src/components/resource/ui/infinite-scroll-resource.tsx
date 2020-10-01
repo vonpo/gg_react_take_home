@@ -1,10 +1,10 @@
 import * as React from "react";
 import { ReactNode, useEffect, useRef, useState } from "react";
-import * as fetch from "isomorphic-fetch";
 import { useOnScreen } from "../hooks/use-on-screen";
 import { Grid } from "@material-ui/core";
 import { LoadingIcon } from "../assets";
 import Typography from "@material-ui/core/Typography";
+import fetch from "isomorphic-fetch";
 
 interface IInfiniteScrollResource<T> {
   url: string;
