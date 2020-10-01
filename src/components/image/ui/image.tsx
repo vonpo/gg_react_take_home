@@ -1,5 +1,5 @@
 import * as React from "react";
-import { FunctionComponent, useState } from "react";
+import { FunctionComponent, useEffect, useState } from "react";
 import { IImage } from "../interfaces";
 import Skeleton from "@material-ui/lab/Skeleton";
 import { FavouriteToggleContainer } from "../../favourite";
@@ -88,6 +88,11 @@ export const ImageWithOptions: FunctionComponent<{ image: IImage }> = ({
   const [areDetailsShown, setAreDetailsShown] = useState<boolean>(false);
   const styles = useFavImagesStyles();
 
+  useEffect(() => {
+    if (areDetailsShown) {
+      setIsShown(false);
+    }
+  }, [areDetailsShown]);
   return (
     <div
       className={styles.root}

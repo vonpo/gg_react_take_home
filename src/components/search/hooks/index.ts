@@ -39,7 +39,7 @@ export const useSearch = ({ searchQuery }: { searchQuery: string }) => {
     reducer,
     {
       query: searchQuery,
-      limit: 30,
+      limit: 40,
       offset: 0,
       found: 0,
     }

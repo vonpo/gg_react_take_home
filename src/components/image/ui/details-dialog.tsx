@@ -10,6 +10,8 @@ import Avatar from "@material-ui/core/Avatar";
 import InputBase from "@material-ui/core/InputBase";
 import { CopyLinkContainer } from "../../copyLink";
 import { FavouriteToggleContainer } from "../../favourite";
+import IconButton from "@material-ui/core/IconButton";
+import CloseIcon from "@material-ui/icons/Close";
 
 /**
  * Display user details if image provides it.
@@ -74,6 +76,11 @@ export const DetailsDialog: FunctionComponent<{
 
   return (
     <Dialog open={isOpen} onClose={handleClose} maxWidth="md" fullWidth>
+      <Grid container direction="row" justify="flex-end">
+        <IconButton onClick={handleClose} color="secondary">
+          <CloseIcon />
+        </IconButton>
+      </Grid>
       <Grid container direction="row">
         <Grid
           container

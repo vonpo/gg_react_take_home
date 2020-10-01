@@ -109,4 +109,5 @@ Tested on:
 https://www.notion.so/React-Developer-Take-Home-Technical-Challenge-b2fd2789487c492ab49cb4d8b340a220
 
 ## Issues
-On ipad copy link doesn't work. (don't have mac to investigate this)
+On ipad copy link doesn't work. (need have mac to investigate this)
+
