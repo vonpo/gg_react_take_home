@@ -30,7 +30,7 @@ export const useFavourites = ({ storage }: { storage?: IStorage }) => {
     dispatch({ type: "SET_FAVOURITES", data: storage.getAll() });
   }, [storage]);
 
-  const add = (id: string, meta: any) => {
+  const addAction = (id: string, meta: any) => {
     if (storage && !state.favourites.has(id)) {
       storage.add(id, meta);
     }
@@ -40,7 +40,7 @@ export const useFavourites = ({ storage }: { storage?: IStorage }) => {
       data: { id, meta: meta },
     });
   };
-  const remove = (id: string) => {
+  const removeAction = (id: string) => {
     if (storage && state.favourites.has(id)) {
       storage.remove(id);
     }
@@ -48,7 +48,7 @@ export const useFavourites = ({ storage }: { storage?: IStorage }) => {
     dispatch({ type: "FAVOURITE_REMOVE", data: id });
   };
 
-  return { state, add, remove };
+  return { state, addAction, removeAction };
 };
 
 /**
@@ -61,12 +61,12 @@ export const useFavourites = ({ storage }: { storage?: IStorage }) => {
  */
 export const FavouriteContext = createContext<{
   state: { favourites: Map<string, object> };
-  add: (id: string, data: object) => void;
-  remove: (id: string) => void;
+  addAction: (id: string, data: object) => void;
+  removeAction: (id: string) => void;
 }>({
   state: { favourites: new Map<string, object>() },
-  add: (id: string, data: object) => {},
-  remove: (id: string) => {},
+  addAction: (id: string, data: object) => {},
+  removeAction: (id: string) => {},
 });
 
 export const useFavouriteContext = () => useContext(FavouriteContext);

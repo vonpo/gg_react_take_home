@@ -6,8 +6,21 @@ import { SearchContainer } from "../search/ui";
 import ButtonBase from "@material-ui/core/ButtonBase";
 import { FavIcon } from "../favourite/assets";
 import { Link } from "react-router-dom";
+import makeStyles from "@material-ui/core/styles/makeStyles";
+
+const useStyle = makeStyles((theme) => ({
+  search: {
+    gridArea: "header",
+    backgroundColor: "white",
+    [theme.breakpoints.down("lg")]: {
+      padding: "0 10px",
+    },
+  },
+}));
 
 export const Header: FunctionComponent = () => {
+  const styles = useStyle();
+
   return (
     <>
       <Grid style={{ gridArea: "empty", backgroundColor: "white" }} />
@@ -15,7 +28,7 @@ export const Header: FunctionComponent = () => {
         container
         direction="row"
         alignItems="center"
-        style={{ gridArea: "header", backgroundColor: "white" }}
+        className={styles.search}
       >
         <Link to="/" style={{ textDecoration: "none" }}>
           <Typography variant="h1" style={{ marginRight: 25 }}>

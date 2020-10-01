@@ -13,7 +13,6 @@ import { SearchIcon } from "../assets";
 import { useHistory } from "react-router-dom";
 
 import makeStyles from "@material-ui/core/styles/makeStyles";
-import { useDetectPath } from "../../route";
 import { useSearchContext } from "../hooks";
 
 const useStyles = makeStyles((theme: Theme) =>

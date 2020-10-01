@@ -1,29 +1,16 @@
 export interface IImage {
   id: string;
   url: string;
+  title: string;
+  user?: {
+    avatarUrl: string;
+    displayName: string;
+  };
   images: {
-    fixed_width: {
-      url: string;
-      height: number;
-      width: number;
-    };
-    fixed_height: {
+    main: {
       url: string;
       height: number;
       width: number;
     };
   };
-}
-export interface IGif extends IImage {
-  type: string;
-  slug: string;
-  username: string;
-  url: string;
-  source: string;
-  bitly_url: string;
-  embed_url: string;
-}
-
-export interface IGiphyApiResponse {
-  data: IGif[];
 }

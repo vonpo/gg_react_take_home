@@ -4,7 +4,26 @@ const primaryColor = "#21282D";
 const secondaryColor = "#FFEDEA";
 const thirdColor = "#FF816A";
 
-export const lightTheme = createMuiTheme({
+declare module "@material-ui/core/styles/createBreakpoints" {
+  interface BreakpointOverrides {
+    xs: true;
+    sm: true;
+    md: true;
+    lg: true;
+    xl: true;
+  }
+}
+
+export const mainTheme = createMuiTheme({
+  breakpoints: {
+    values: {
+      xs: 0,
+      sm: 800, // redefine small breakpoints as 800px is size when we need to change from row to column <SectionWithImage>
+      md: 1000,
+      lg: 1250,
+      xl: 1200,
+    },
+  },
   palette: {
     primary: {
       main: primaryColor,
@@ -38,6 +57,24 @@ export const lightTheme = createMuiTheme({
         fontSize: "16px",
         color: "white",
         fontFamily: "'Lato', sans-serif",
+      },
+      h5: {
+        fontSize: "20px",
+        color: "white",
+        fontFamily: "'Lato', sans-serif",
+        fontWeight: 900,
+      },
+      h6: {
+        fontSize: "16px",
+        color: "white",
+        fontFamily: "'Lato', sans-serif",
+        fontWeight: 900,
+      },
+    },
+    MuiDialog: {
+      paper: {
+        backgroundColor: primaryColor,
+        padding: 20,
       },
     },
     MuiInputBase: {

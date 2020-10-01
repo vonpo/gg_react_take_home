@@ -1,35 +1,50 @@
 # Search gifs app
 
-# tech stack
-* React (hooks, context API)
-* Typescript
-* Less
-* Tests(jest)
-* webpack (manually configured)
+# Description
 
-## Browser
+Goal of this app is to create app when user can display GIF and store them so when browser is refresh they are not lost.
 
-Tested on:
-* chrome (windows)
-* firefox (windows)
-* edge (windows)
-* chrome (android)
-* safari (ipad ios)
+# Solution
 
-## Documentation
+App downloads gifs from Giphy api with those endpoints:
 
-https://www.notion.so/React-Developer-Take-Home-Technical-Challenge-b2fd2789487c492ab49cb4d8b340a220
+Search gif by terms: `https://developers.giphy.com/docs/api/endpoint#search`
+Get trending gifs: `https://developers.giphy.com/docs/api/endpoint#trending`
 
-## User stories
+Gifs are displayed by `<InfiniteScrollResource />` this is generic component that loads given `url` and renders it using `render` prop.
+It was designed to render any given url and render any view.
 
-- As a user, I want to be able to see and browse through a list of all of the trending GIFs so that I can be inspired to use a GIF I have never used before
-- As a user, I want to be able to search for a specific GIF that I am looking for so that I can find the perfect GIF to send to my friends
-- As a user, I want to be able to expand the details of one of the GIFs that I found so that I can see all of the relevant details and also decide if I want to use it to send to my friends
-    - Feel free to use whatever details you think are important
-- As a user, I want to be able to mark specific GIFs that I like as my favorites so that I can always come back to my favorite GIFs rather than having to search for them again.
-- As a user, I want to be able to refresh the page or come back to it at a later date and still see my favorite GIFs
-    - This does not require the GIPHY API or any backend API. Just store this locally on the front-end.
+App is splitted into two routes with `react-router-dom`:
 
+`<Route path="/" component={GiphyGalleryContainer} exact />`
+
+`<Route path="/favourite" component={FavouriteGalleryContainer} />`
+
+Both components `GiphyGalleryContainer` and `GiphyGalleryContainer` are containers for `<ImageGrid />`
+
+`<ImageGrid ImageView={Component}/>` component  iterates through image list and passes image data to `ImageView` component. 
+`ImageGrid` main purpose it setup layout for images. 
+
+Favourites state is managed by `FavouriteContext` which is exposed by `useFavourites` with following properties:
+```
+    state: { favourites: Map<string, object> };
+    addAction: (id: string, data: object) => void;
+    removeAction: (id: string) => void;
+```
+
+Search state is managed by `SearchContext` which is exposed by `useFavourites` with following properties:
+```
+  state: ISearchState;
+  setSearchAction: (query: string) => void;
+  setLimitAction: (limit: number) => void;
+  setOffsetAction: (offset: number) => void;
+  setFoundAction: (found: number) => void;
+```
+  
+# Run App!
+
+## prerequisites
+Create `.env` file with `GIPHY_API_KEY`
 
 ## run 
 Run this script to run and develop app:
@@ -44,3 +59,44 @@ Run this script to run and develop app:
 
 ## run prettier
 `npm run prettier`
+
+## Layout 
+
+Main layout uses CSS grid.
+It consists of two rows and three columns.
+
+First row is header.
+Second row is image gallery.
+
+## Gallery
+Gallery has infinite an scroll which loads last element window is scrollable and last element is displayed.
+
+There is one gotcha when we have very tall monitor it can happen that window size is enough to display all elements 
+then this won't work. 
+
+### Gallery layout
+
+Gallery has horizontal layout. (created with css flex)
+
+## Favourites
+Favourites are saved local storage they have all data that is returned by Giphy api.
+There is risk that user can exceed this limit! 
+
+# tech stack
+* React (hooks, context API)
+* Typescript
+* Tests(mocha)
+* webpack (manually configured)
+
+## Browser
+
+Tested on:
+* chrome (windows)
+* firefox (windows)
+* edge (windows)
+* chrome (android)
+* safari (ipad ios)
+
+## Documentation
+
+https://www.notion.so/React-Developer-Take-Home-Technical-Challenge-b2fd2789487c492ab49cb4d8b340a220

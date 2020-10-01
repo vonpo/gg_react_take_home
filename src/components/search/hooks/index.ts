@@ -13,16 +13,16 @@ import { reducer } from "./reducer";
  */
 export const SearchContext = createContext<{
   state: ISearchState;
-  search: (query: string) => void;
-  limit: (limit: number) => void;
-  offset: (offset: number) => void;
-  found: (found: number) => void;
+  setSearchAction: (query: string) => void;
+  setLimitAction: (limit: number) => void;
+  setOffsetAction: (offset: number) => void;
+  setFoundAction: (found: number) => void;
 }>({
   state: { query: "", limit: 0, offset: 0, found: 0 },
-  limit: (limit: number) => {},
-  offset: (offset: number) => {},
-  found: (found: number) => {},
-  search: (query: string) => {},
+  setLimitAction: (limit: number) => {},
+  setOffsetAction: (offset: number) => {},
+  setFoundAction: (found: number) => {},
+  setSearchAction: (query: string) => {},
 });
 
 export const useSearchContext = () => useContext(SearchContext);
@@ -39,7 +39,7 @@ export const useSearch = ({ searchQuery }: { searchQuery: string }) => {
     reducer,
     {
       query: searchQuery,
-      limit: 20,
+      limit: 30,
       offset: 0,
       found: 0,
     }
@@ -47,14 +47,25 @@ export const useSearch = ({ searchQuery }: { searchQuery: string }) => {
 
   useEffect(() => {
     if (state.query !== searchQuery) {
-      search(searchQuery);
+      setSearchAction(searchQuery);
+      setOffsetAction(0);
     }
   }, [searchQuery]);
 
-  const search = (query: string) => dispatch({ type: "SET_SEARCH", query });
-  const limit = (limit: number) => dispatch({ type: "SET_LIMIT", limit });
-  const offset = (offset: number) => dispatch({ type: "SET_OFFSET", offset });
-  const found = (found: number) => dispatch({ type: "SET_FOUND", found });
+  const setSearchAction = (query: string) =>
+    dispatch({ type: "SET_SEARCH", query });
+  const setLimitAction = (limit: number) =>
+    dispatch({ type: "SET_LIMIT", limit });
+  const setOffsetAction = (offset: number) =>
+    dispatch({ type: "SET_OFFSET", offset });
+  const setFoundAction = (found: number) =>
+    dispatch({ type: "SET_FOUND", found });
 
-  return { state, search, limit, offset, found };
+  return {
+    state,
+    setSearchAction,
+    setLimitAction,
+    setOffsetAction,
+    setFoundAction,
+  };
 };

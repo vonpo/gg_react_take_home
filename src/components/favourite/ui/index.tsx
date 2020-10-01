@@ -3,6 +3,7 @@ import { FunctionComponent } from "react";
 import { useFavouriteContext } from "../hooks";
 import { IconButton } from "@material-ui/core";
 import { FavIcon } from "../assets";
+import Tooltip from "@material-ui/core/Tooltip";
 
 const FAV_IMAGE_WIDTH = 30;
 const FAV_IMAGE_HEIGHT = 30;
@@ -12,16 +13,15 @@ const FavouriteToggle: FunctionComponent<{
   isFavourite: boolean;
 }> = ({ onClick, isFavourite }) => {
   return (
-    <IconButton
-      onClick={onClick}
-      title={isFavourite ? "Unset favourite" : "Set favourite"}
-    >
-      <FavIcon
-        empty={!isFavourite}
-        height={FAV_IMAGE_HEIGHT}
-        width={FAV_IMAGE_WIDTH}
-      />
-    </IconButton>
+    <Tooltip title={isFavourite ? "Unset favourite" : "Set favourite"}>
+      <IconButton onClick={onClick}>
+        <FavIcon
+          empty={!isFavourite}
+          height={FAV_IMAGE_HEIGHT}
+          width={FAV_IMAGE_WIDTH}
+        />
+      </IconButton>
+    </Tooltip>
   );
 };
 
@@ -36,14 +36,14 @@ export const FavouriteToggleContainer: FunctionComponent<{
   id: string;
   meta: object;
 }> = ({ id, meta }) => {
-  const { add, remove, state } = useFavouriteContext();
+  const { addAction, removeAction, state } = useFavouriteContext();
   const isFavourite = state.favourites.has(id);
 
   const onClick = () => {
     if (isFavourite) {
-      remove(id);
+      removeAction(id);
     } else {
-      add(id, meta);
+      addAction(id, meta);
     }
   };
 

@@ -3,7 +3,7 @@ import * as ReactDOM from "react-dom";
 import { FunctionComponent } from "react";
 import CssBaseline from "@material-ui/core/CssBaseline";
 import { ThemeProvider } from "@material-ui/core/styles";
-import { lightTheme } from "./components/theme";
+import { mainTheme } from "./components/theme";
 import { BrowserRouter } from "react-router-dom";
 import { AppLayoutContainer } from "./components/app";
 
@@ -14,7 +14,7 @@ document.body.appendChild(element);
 const App: FunctionComponent = () => {
   return (
     <>
-      <ThemeProvider theme={lightTheme}>
+      <ThemeProvider theme={mainTheme}>
         <BrowserRouter>
           <CssBaseline />
           <AppLayoutContainer />

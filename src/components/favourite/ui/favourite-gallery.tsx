@@ -22,6 +22,8 @@ const useStyles = makeStyles({
 });
 const FavouriteGallery: FunctionComponent = () => {
   const { state } = useFavouriteContext();
+
+  // Display lastly added items as first in fav gallery.
   const images = Array.from(state.favourites.values())
     .map((item: { meta: IImage }) => item.meta)
     .reverse();
