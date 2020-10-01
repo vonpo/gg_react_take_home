@@ -28,10 +28,10 @@ const useStyles = makeStyles((theme: Theme) =>
 );
 
 export const FavIcon: FunctionComponent<{
-  empty?: boolean;
+  isEmpty?: boolean;
   width: number;
   height: number;
-}> = ({ empty, width, height }) => {
+}> = ({ isEmpty, width, height }) => {
   const styles = useStyles();
 
   return (
@@ -43,7 +43,7 @@ export const FavIcon: FunctionComponent<{
     >
       <g className={styles.b}>
         <path
-          className={empty ? styles.cEmpty : styles.c}
+          className={isEmpty ? styles.cEmpty : styles.c}
           d="M26.827,24.507c4.361-.228,4.759-3.976,3.684-6.823-1.425-3.8-5.967-10.355-13.71-10.126-5.919.168-9.3,4.409-9.3,10.126s1.969,13.19,19.327,24.229C44.186,30.873,46.155,23.4,46.155,17.684s-3.382-9.946-9.3-10.126c-7.743-.228-12.285,6.33-13.71,10.114-1.075,2.847-.676,6.595,3.684,6.823"
           transform="translate(-6.594 -6.645)"
         />

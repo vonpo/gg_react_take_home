@@ -38,7 +38,6 @@ const useStyle = makeStyles((theme) => ({
     // https://developer.mozilla.org/en-US/docs/Web/CSS/overflow-anchor/Guide_to_scroll_anchoring
     // disable overflow anchor as when loading elements it will jump to latest but we want to keep scroll position
     overflowAnchor: "none",
-    test: console.info(theme.breakpoints),
     [theme.breakpoints.down("lg")]: {
       gridTemplateRows: "78px 50px auto",
       gridTemplateColumns: "1fr",

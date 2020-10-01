@@ -8,7 +8,7 @@ import Tooltip from "@material-ui/core/Tooltip";
 const FAV_IMAGE_WIDTH = 30;
 const FAV_IMAGE_HEIGHT = 30;
 
-const FavouriteToggle: FunctionComponent<{
+export const FavouriteToggle: FunctionComponent<{
   onClick: () => void;
   isFavourite: boolean;
 }> = ({ onClick, isFavourite }) => {
@@ -16,7 +16,7 @@ const FavouriteToggle: FunctionComponent<{
     <Tooltip title={isFavourite ? "Unset favourite" : "Set favourite"}>
       <IconButton onClick={onClick}>
         <FavIcon
-          empty={!isFavourite}
+          isEmpty={!isFavourite}
           height={FAV_IMAGE_HEIGHT}
           width={FAV_IMAGE_WIDTH}
         />

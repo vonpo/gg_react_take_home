@@ -37,7 +37,7 @@ export const useFavourites = ({ storage }: { storage?: IStorage }) => {
 
     dispatch({
       type: "FAVOURITE_ADD",
-      data: { id, meta: meta },
+      data: { id, meta },
     });
   };
   const removeAction = (id: string) => {

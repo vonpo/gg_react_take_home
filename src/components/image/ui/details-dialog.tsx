@@ -1,15 +1,15 @@
 import { FunctionComponent } from "react";
 import { Dialog } from "@material-ui/core";
 import * as React from "react";
-import { IImage } from "../resource/interfaces";
-import { Image } from "./";
+import { IImage } from "../interfaces";
+import { Image } from "../";
 import Grid from "@material-ui/core/Grid";
 import makeStyles from "@material-ui/core/styles/makeStyles";
 import Typography from "@material-ui/core/Typography";
 import Avatar from "@material-ui/core/Avatar";
 import InputBase from "@material-ui/core/InputBase";
-import { CopyLinkContainer } from "../copyLink";
-import { FavouriteToggleContainer } from "../favourite/ui";
+import { CopyLinkContainer } from "../../copyLink";
+import { FavouriteToggleContainer } from "../../favourite";
 
 /**
  * Display user details if image provides it.
@@ -17,7 +17,9 @@ import { FavouriteToggleContainer } from "../favourite/ui";
  * @param {IImage} image
  * @constructor
  */
-const UserDetails: FunctionComponent<{ image: IImage }> = ({ image }) => {
+export const UserDetails: FunctionComponent<{ image: IImage }> = ({
+  image,
+}) => {
   if (!image.user) {
     return null;
   }

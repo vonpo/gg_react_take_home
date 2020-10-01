@@ -2,7 +2,10 @@
   "rules": {
     "no-submodule-imports": false,
     "no-duplicate-imports": false,
-    "react-hooks-nesting": "error"
+    "react-hooks-nesting": "error",
+    "only-arrow-functions": false,
+    "no-unused-expression": false,
+    "no-empty": false
   },
   "extends": [
     "tslint:latest",

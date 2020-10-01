@@ -19,10 +19,10 @@ export const SearchContext = createContext<{
   setFoundAction: (found: number) => void;
 }>({
   state: { query: "", limit: 0, offset: 0, found: 0 },
-  setLimitAction: (limit: number) => {},
-  setOffsetAction: (offset: number) => {},
-  setFoundAction: (found: number) => {},
-  setSearchAction: (query: string) => {},
+  setLimitAction: (_: number) => {},
+  setOffsetAction: (_: number) => {},
+  setFoundAction: (_: number) => {},
+  setSearchAction: (_: string) => {},
 });
 
 export const useSearchContext = () => useContext(SearchContext);

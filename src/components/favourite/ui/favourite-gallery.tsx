@@ -5,7 +5,7 @@
  */
 import { FunctionComponent } from "react";
 import { useFavourites, FavouriteContext, useFavouriteContext } from "../hooks";
-import { IImage } from "../../resource/interfaces";
+import { IImage } from "../../image/interfaces";
 import * as React from "react";
 import { ImageWithOptions } from "../../image";
 import { LocalStorage } from "../../storage";

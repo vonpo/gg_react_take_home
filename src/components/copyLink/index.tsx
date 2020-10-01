@@ -12,15 +12,7 @@ export const CopyLinkContainer: FunctionComponent<{ text: string }> = ({
 }) => {
   const onCopy = () => {
     // https://stackoverflow.com/questions/400212/how-do-i-copy-to-the-clipboard-in-javascript
-
-    navigator.clipboard.writeText(text).then(
-      function () {
-        console.info("Async: Copying to clipboard was successful!");
-      },
-      function (err) {
-        console.error("Async: Could not copy text: ", err);
-      }
-    );
+    navigator.clipboard.writeText(text);
   };
   return (
     <Tooltip title="Copy link">

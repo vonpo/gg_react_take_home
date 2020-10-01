@@ -1,5 +1,5 @@
 import { ISearchState } from "../search/hooks/types";
-import { IImage } from "../resource/interfaces";
+import { IImage } from "../image/interfaces";
 import { FunctionComponent, useEffect, useState } from "react";
 import { useSearchContext } from "../search/hooks";
 import { FavouriteContext, useFavourites } from "../favourite/hooks";
@@ -15,10 +15,12 @@ import { Typography } from "@material-ui/core";
 import { TrendingIcon } from "./assets";
 import { IGif, IGiphyApiResponse } from "../../api/giphy/interfaces";
 
-/** Generate current and next resource url
+/**
+ * Generate current and next resource url
  *
  * @param {ISearchState} state
  * @param {function} getResourceProviderUrl
+ *
  */
 function generateResourceUrl(
   state: ISearchState,

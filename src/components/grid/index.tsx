@@ -1,7 +1,7 @@
 import { FunctionComponent } from "react";
 import * as React from "react";
 import Grid from "@material-ui/core/Grid";
-import { IImage } from "../resource/interfaces";
+import { IImage } from "../image/interfaces";
 
 /**
  * Image grid display image components.
