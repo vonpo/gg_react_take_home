@@ -43,6 +43,9 @@ const useStyle = makeStyles((theme) => ({
       gridTemplateColumns: "1fr",
       gridTemplateAreas: '"header" "fav" "gallery"',
     },
+    [theme.breakpoints.down("sm")]: {
+      gridTemplateRows: "128px 50px auto",
+    },
   },
 }));
 

@@ -30,12 +30,16 @@ export const Header: FunctionComponent = () => {
         alignItems="center"
         className={styles.search}
       >
-        <Link to="/" style={{ textDecoration: "none" }}>
-          <Typography variant="h1" style={{ marginRight: 25 }}>
-            M-GLIPHY
-          </Typography>
-        </Link>
-        <SearchContainer />
+        <Grid item xs={12} md={3}>
+          <Link to="/" style={{ textDecoration: "none" }}>
+            <Typography variant="h1" style={{ marginRight: 25 }}>
+              M-GLIPHY
+            </Typography>
+          </Link>
+        </Grid>
+        <Grid item xs={12} md={9}>
+          <SearchContainer />
+        </Grid>
       </Grid>
       <Grid
         container

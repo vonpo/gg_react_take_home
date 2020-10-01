@@ -28,16 +28,13 @@ export const Image: FunctionComponent<{ image: IImage }> = ({ image }) => {
       <Skeleton
         variant="rect"
         style={{
+          maxWidth: "calc(100% - 20px)",
           position: "absolute",
           width: displayImage.width + "px",
           height: displayImage.height + "px",
         }}
       />
-      <img
-        src={displayImage.url}
-        width={displayImage.width}
-        height={displayImage.height}
-      />
+      <img src={displayImage.url} style={{ maxWidth: "calc(100% - 20px)" }} />
     </div>
   );
 };
