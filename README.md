@@ -29,6 +29,16 @@ App is splitted into two routes with `react-router-dom`:
 Both components `GiphyGalleryContainer` and `GiphyGalleryContainer` are containers for `<ImageGrid />`
 
 `<ImageGrid ImageView={Component}/>` component  iterates through image list and passes image data to `ImageView` component. 
+`ImageGrid` can work in two modes:
+1. Images are displayed in even columns and there is logic which splits images and prevents changing image order after loading new images (https://github.com/vonpo/gg_react_take_home/blob/master/src/components/grid/logic.ts)
+
+![Horizontal view](https://github.com/vonpo/gg_react_take_home/blob/master/docs/2020-10-01_21h40_54.png?raw=true)
+
+2. Images are displayed in even rows no special logic is used just css flex.
+![Vertical view](https://raw.githubusercontent.com/vonpo/gg_react_take_home/master/docs/2020-10-01_21h41_36.png)
+
+It can be switched using this property: 
+https://github.com/vonpo/gg_react_take_home/blob/master/src/components/grid/index.tsx#L19
 
 `<Image />` component can render small or main image with `thumbnail flag parameter.
 
