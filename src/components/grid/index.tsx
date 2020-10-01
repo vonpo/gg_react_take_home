@@ -45,6 +45,8 @@ export const ImageGrid: FunctionComponent<{
   }, [containerRef.current, windowSize]);
 
   if (HORIZONTAL_LAYOUT) {
+    // This line perfectly fine as long HORIZONTAL_LAYOUT as can't be change during component life cycle.
+    /* tslint:disable react-hooks-nesting  */
     const itemsByColumns = useMemo<Map<number, IImage[]>>(
       () => splitItemsIntoColumn(columns, images),
       [columns, images]
@@ -53,15 +55,15 @@ export const ImageGrid: FunctionComponent<{
     return (
       <Grid container direction="row" justify="center" ref={containerRef}>
         {Array.from(new Array(columns)).map((_, index) => {
-          const images = itemsByColumns.get(index);
+          const imageInColumn = itemsByColumns.get(index);
 
-          if (!images) {
+          if (!imageInColumn) {
             return null;
           }
 
           return (
             <Grid>
-              {images.map((image: IImage) => (
+              {imageInColumn.map((image: IImage) => (
                 <ImageView image={image} key={image.id} />
               ))}
             </Grid>
