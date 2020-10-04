@@ -1,4 +1,5 @@
 import { createMuiTheme } from "@material-ui/core/styles";
+import "./assets/style.less";
 
 const primaryColor = "#21282D";
 const secondaryColor = "#FFEDEA";
