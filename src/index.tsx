@@ -3,9 +3,9 @@ import * as ReactDOM from "react-dom";
 import { FunctionComponent } from "react";
 import CssBaseline from "@material-ui/core/CssBaseline";
 import { ThemeProvider } from "@material-ui/core/styles";
-import { mainTheme } from "./components/theme";
+import { mainTheme } from "./theme/theme";
 import { BrowserRouter } from "react-router-dom";
-import { AppLayoutContainer } from "./components/app";
+import { AppLayout } from "./components/layout/AppLayout";
 
 const element = document.createElement("div");
 
@@ -17,7 +17,7 @@ const App: FunctionComponent = () => {
       <ThemeProvider theme={mainTheme}>
         <BrowserRouter>
           <CssBaseline />
-          <AppLayoutContainer />
+          <AppLayout />
         </BrowserRouter>
       </ThemeProvider>
     </>
