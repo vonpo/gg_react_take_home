@@ -1,5 +1,6 @@
-import { IGif, IGiphyApiResponse } from "../api/giphy/interfaces";
+import { IGif, IGiphyApiResponse } from "../interfaces/giphy";
 import { IImage } from "../interfaces/image";
+import { GIPHY_API_KEY } from "../config/giphy";
 
 /**
  * Map giphy response to Image.
@@ -28,4 +29,22 @@ export function mapGiphyToImage(response: IGiphyApiResponse): IImage[] {
       },
     },
   }));
+}
+
+export function getGiphyQueryUrl({
+  query,
+  limit,
+  offset,
+}: {
+  query: string;
+  limit: number;
+  offset: number;
+}) {
+  const searchTrending = !Boolean(query);
+
+  if (searchTrending) {
+    return `https://api.giphy.com/v1/gifs/trending?api_key=${GIPHY_API_KEY}&limit=${limit}&offset=${offset}`;
+  }
+
+  return `https://api.giphy.com/v1/gifs/search?api_key=${GIPHY_API_KEY}&q=${query}&limit=${limit}&offset=${offset}`;
 }

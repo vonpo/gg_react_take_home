@@ -4,8 +4,8 @@ import { InifiteScrollResourceContainer } from "../InifiteScrollResource/Inifite
 import { ImageGridContainer } from "../ImageGrid/ImageGridContainer";
 import { ImageWithOptionsView } from "../Image/ImageWithOptionsView";
 import * as React from "react";
-import { getGiphyQueryUrl } from "../../../api/giphy";
-import { IGiphyApiResponse } from "../../../api/giphy/interfaces";
+import { getGiphyQueryUrl } from "../../../utils/giphy";
+import { IGiphyApiResponse } from "../../../interfaces/giphy";
 import { GalleryHeaderView } from "./GiphyGalleryHeaderView";
 import { generateResourceUrl } from "../../../utils/resource";
 import { mapGiphyToImage } from "../../../utils/giphy";

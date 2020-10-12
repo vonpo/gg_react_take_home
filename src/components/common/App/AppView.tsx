@@ -1,6 +1,6 @@
 import { FunctionComponent } from "react";
 import { ThemeProvider } from "@material-ui/core/styles";
-import { mainTheme } from "../../../theme/theme";
+import { mainTheme } from "../../../theme/mainTheme";
 import { BrowserRouter } from "react-router-dom";
 import * as React from "react";
 import { AppLayout } from "../../layout/AppLayout";
