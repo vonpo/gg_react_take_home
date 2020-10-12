@@ -1,14 +1,8 @@
 import * as React from "react";
 import { FunctionComponent } from "react";
-import { IImage } from "../../interfaces/image";
+import { IImage } from "../../../interfaces/image";
 import Skeleton from "@material-ui/lab/Skeleton";
-import makeStyles from "@material-ui/core/styles/makeStyles";
-
-const useStyles = makeStyles({
-  imageContainer: {
-    maxWidth: "calc(100vw - 20px)",
-  },
-});
+import { useImageStyles } from "./Image.styles";
 
 /**
  * Display image/gif.
@@ -29,7 +23,7 @@ export const ImageView: FunctionComponent<{
   thumbnail: boolean;
 }> = ({ image, thumbnail }) => {
   const displayImage = thumbnail ? image.images.small : image.images.main;
-  const styles = useStyles();
+  const styles = useImageStyles();
 
   return (
     <div style={{ position: "relative" }}>

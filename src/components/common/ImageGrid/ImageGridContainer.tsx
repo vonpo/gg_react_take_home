@@ -1,9 +1,9 @@
 import { FunctionComponent, useEffect, useMemo, useRef, useState } from "react";
 import * as React from "react";
 import Grid from "@material-ui/core/Grid";
-import { IImage } from "../../interfaces/image";
-import { splitItemsIntoColumn } from "../../utils/gridLayout";
-import { useWindowSize } from "../../hooks/useWindowSize";
+import { IImage } from "../../../interfaces/image";
+import { splitItemsIntoColumn } from "../../../utils/gridLayout";
+import { useWindowSize } from "../../../hooks/useWindowSize";
 
 const ELEMENT_WIDTH = 200;
 

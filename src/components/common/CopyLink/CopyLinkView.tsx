@@ -1,6 +1,6 @@
 import { FunctionComponent } from "react";
 import { IconButton } from "@material-ui/core";
-import { CopyLinkIcon } from "../../icons/CopyLink";
+import { CopyLinkIcon } from "../../../icons/CopyLink";
 import Tooltip from "@material-ui/core/Tooltip";
 import * as React from "react";
 

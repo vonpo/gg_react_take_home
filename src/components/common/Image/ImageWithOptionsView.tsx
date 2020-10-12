@@ -1,24 +1,13 @@
 import makeStyles from "@material-ui/core/styles/makeStyles";
 import { FunctionComponent, useEffect, useState } from "react";
-import { IImage } from "../../interfaces/image";
-import { CopyLinkContainer } from "./CopyLinkContainer";
-import { FavouriteToggleContainer } from "./FavouriteToggleContainer";
-import { DetailsDialogView } from "./DetailsDialogView";
+import { IImage } from "../../../interfaces/image";
+import { CopyLinkContainer } from "../CopyLink/CopyLinkContainer";
+import { FavouriteToggleContainer } from "../FavouriteToggle/FavouriteToggleContainer";
+import { DetailsDialogView } from "../DetailsDialog/DetailsDialogView";
 import { ButtonBase } from "@material-ui/core";
 import * as React from "react";
 import { ImageView } from "./ImageView";
-
-const useFavImagesStyles = makeStyles(() => ({
-  root: {
-    position: "relative",
-  },
-  optionsContainer: {
-    position: "absolute",
-    zIndex: 1,
-    right: 10,
-    top: 10,
-  },
-}));
+import { useImagesWithOptionsStyles } from "./Image.styles";
 
 /**
  * Display image and image options:
@@ -36,7 +25,7 @@ export const ImageWithOptionsView: FunctionComponent<{ image: IImage }> = ({
 }) => {
   const [isShown, setIsShown] = useState<boolean>(false);
   const [areDetailsShown, setAreDetailsShown] = useState<boolean>(false);
-  const styles = useFavImagesStyles();
+  const styles = useImagesWithOptionsStyles();
 
   useEffect(() => {
     if (areDetailsShown) {

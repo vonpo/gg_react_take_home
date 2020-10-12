@@ -1,14 +1,14 @@
 import { FunctionComponent, useEffect, useState } from "react";
-import { useSearchContext } from "../../contexts/search";
-import { InifiteScrollResource } from "./InifiteScrollResource";
-import { ImageGridContainer } from "./ImageGridContainer";
-import { ImageWithOptionsView } from "./ImageWithOptionsView";
+import { useSearchContext } from "../../../contexts/search";
+import { InifiteScrollResourceContainer } from "../InifiteScrollResourceContainer/InifiteScrollResourceContainer";
+import { ImageGridContainer } from "../ImageGrid/ImageGridContainer";
+import { ImageWithOptionsView } from "../Image/ImageWithOptionsView";
 import * as React from "react";
-import { getGiphyQueryUrl } from "../../api/giphy";
-import { IGiphyApiResponse } from "../../api/giphy/interfaces";
+import { getGiphyQueryUrl } from "../../../api/giphy";
+import { IGiphyApiResponse } from "../../../api/giphy/interfaces";
 import { GalleryHeaderView } from "./GiphyGalleryHeaderView";
-import { generateResourceUrl } from "../../utils/resource";
-import { mapGiphyToImage } from "../../utils/giphy";
+import { generateResourceUrl } from "../../../utils/resource";
+import { mapGiphyToImage } from "../../../utils/giphy";
 
 /**
  * Merge next data from GiphyApi response.
@@ -82,7 +82,7 @@ export const GiphyGalleryContainer: FunctionComponent = () => {
         displaySearchResults={Boolean(state.query)}
         found={state.found}
       />
-      <InifiteScrollResource
+      <InifiteScrollResourceContainer
         url={resourceUrl.url}
         nextUrl={resourceUrl.next}
         render={(response: IGiphyApiResponse) => (

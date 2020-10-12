@@ -2,32 +2,14 @@ import * as React from "react";
 import { FunctionComponent } from "react";
 import Grid from "@material-ui/core/Grid";
 import { Typography } from "@material-ui/core";
-import { SearchContainer } from "./SearchContainer";
+import { SearchContainer } from "../Search/SearchContainer";
 import ButtonBase from "@material-ui/core/ButtonBase";
-import { FavIcon } from "../../icons/FavIcon";
+import { FavIcon } from "../../../icons/FavIcon";
 import { Link } from "react-router-dom";
-import makeStyles from "@material-ui/core/styles/makeStyles";
-
-const useStyle = makeStyles((theme) => ({
-  search: {
-    gridArea: "header",
-    backgroundColor: "white",
-    [theme.breakpoints.down("lg")]: {
-      padding: "0 10px",
-    },
-  },
-  header: {
-    [theme.breakpoints.down("lg")]: {
-      paddingLeft: 60,
-    },
-  },
-  searchBox: {
-    flex: 1,
-  },
-}));
+import { useHeaderStyles } from "./Header.styles";
 
 export const HeaderView: FunctionComponent = () => {
-  const styles = useStyle();
+  const styles = useHeaderStyles();
 
   return (
     <>

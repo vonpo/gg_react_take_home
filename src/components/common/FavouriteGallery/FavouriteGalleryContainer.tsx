@@ -4,9 +4,9 @@
  * @constructor
  */
 import { FunctionComponent } from "react";
-import { IImage } from "../../interfaces/image";
+import { IImage } from "../../../interfaces/image";
 import * as React from "react";
-import { useFavouriteContext } from "../../contexts/favourite";
+import { useFavouriteContext } from "../../../contexts/favourite";
 import { FavouriteGalleryView } from "./FavouriteGalleryView";
 
 export const FavouriteGalleryContainer: FunctionComponent = () => {

@@ -1,12 +1,12 @@
 import * as React from "react";
 import { shallow, configure } from "enzyme";
-import { DetailsDialogView } from "../common/DetailsDialogView";
-import { UserDetailsView } from "../common/UserDetailsView";
+import { DetailsDialogView } from "./DetailsDialogView";
+import { UserDetailsView } from "../UserDetails/UserDetailsView";
 import Adapter from "enzyme-adapter-react-16";
 import { expect } from "chai";
-import { IImage } from "../../interfaces/image";
-import { CopyLinkContainer } from "../common/CopyLinkContainer";
-import { FavouriteToggleContainer } from "../common/FavouriteToggleContainer";
+import { IImage } from "../../../interfaces/image";
+import { CopyLinkContainer } from "../CopyLink/CopyLinkContainer";
+import { FavouriteToggleContainer } from "../FavouriteToggle/FavouriteToggleContainer";
 
 describe("<DetailsDialog/> spec", () => {
   before(() => {

@@ -1,26 +1,16 @@
-import makeStyles from "@material-ui/core/styles/makeStyles";
 import { FunctionComponent } from "react";
-import { IImage } from "../../interfaces/image";
+import { IImage } from "../../../interfaces/image";
 import Grid from "@material-ui/core/Grid";
 import { Typography } from "@material-ui/core";
-import { ImageGridContainer } from "./ImageGridContainer";
-import { ImageWithOptionsView } from "./ImageWithOptionsView";
+import { ImageGridContainer } from "../ImageGrid/ImageGridContainer";
+import { ImageWithOptionsView } from "../Image/ImageWithOptionsView";
 import * as React from "react";
-
-const useStyles = makeStyles((theme) => ({
-  header: {
-    marginTop: 84,
-    marginBottom: 40,
-    [theme.breakpoints.down("lg")]: {
-      paddingLeft: 60,
-    },
-  },
-}));
+import { useFavouriteGalleryStyles } from "./FavouriteGallery.styles";
 
 export const FavouriteGalleryView: FunctionComponent<{ images: IImage[] }> = ({
   images,
 }) => {
-  const styles = useStyles();
+  const styles = useFavouriteGalleryStyles();
 
   return (
     <Grid container direction="column">

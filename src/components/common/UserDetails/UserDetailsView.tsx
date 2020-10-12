@@ -1,6 +1,6 @@
 import { FunctionComponent } from "react";
 import * as React from "react";
-import { IImage } from "../../interfaces/image";
+import { IImage } from "../../../interfaces/image";
 import Typography from "@material-ui/core/Typography";
 import Avatar from "@material-ui/core/Avatar";
 

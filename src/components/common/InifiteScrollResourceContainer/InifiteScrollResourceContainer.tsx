@@ -1,11 +1,9 @@
 import * as React from "react";
 import { useEffect, useRef, useState } from "react";
-import { useOnScreen } from "../../hooks/useOnScreen";
-import { Grid } from "@material-ui/core";
-import { LoadingIcon } from "../../icons/Loading";
-import Typography from "@material-ui/core/Typography";
-import { IInfiniteScrollResource } from "../../interfaces/resource";
-import { getResource } from "../../utils/resource";
+import { useOnScreen } from "../../../hooks/useOnScreen";
+import { IInfiniteScrollResource } from "../../../interfaces/resource";
+import { getResource } from "../../../utils/resource";
+import { InifiteScrollResourceLoadingView } from "./InifiteScrollResourceLoadingView";
 
 /**
  *
@@ -27,7 +25,7 @@ import { getResource } from "../../utils/resource";
  *
  * @constructor
  */
-export const InifiteScrollResource = <T extends object>({
+export const InifiteScrollResourceContainer = <T extends object>({
   render,
   url,
   nextUrl,
@@ -93,12 +91,7 @@ export const InifiteScrollResource = <T extends object>({
   return (
     <div>
       {mergedRemoteData && render(mergedRemoteData)}
-      {isLoading && (
-        <Grid container direction="column" alignItems="center">
-          <Typography variant="h5">Loading</Typography>
-          <LoadingIcon width={134} height={11} />
-        </Grid>
-      )}
+      {isLoading && <InifiteScrollResourceLoadingView />}
       <div ref={ref} />
     </div>
   );

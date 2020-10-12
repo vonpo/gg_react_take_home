@@ -1,9 +1,9 @@
 import { FunctionComponent } from "react";
 import * as React from "react";
-import { logger } from "../../utils/logger";
-import { useNotificationContext } from "../../contexts/notification";
+import { logger } from "../../../utils/logger";
+import { useNotificationContext } from "../../../contexts/notification";
 import { CopyLinkView } from "./CopyLinkView";
-import { copy } from "../../utils/copy";
+import { copy } from "../../../utils/copy";
 
 export const CopyLinkContainer: FunctionComponent<{ text: string }> = ({
   text,

@@ -1,42 +1,17 @@
 import { FunctionComponent } from "react";
 import { Dialog } from "@material-ui/core";
 import * as React from "react";
-import { IImage } from "../../interfaces/image";
-import { ImageView } from "./ImageView";
+import { IImage } from "../../../interfaces/image";
+import { ImageView } from "../Image/ImageView";
 import Grid from "@material-ui/core/Grid";
-import makeStyles from "@material-ui/core/styles/makeStyles";
 import Typography from "@material-ui/core/Typography";
 import InputBase from "@material-ui/core/InputBase";
-import { CopyLinkContainer } from "./CopyLinkContainer";
-import { FavouriteToggleContainer } from "./FavouriteToggleContainer";
+import { CopyLinkContainer } from "../CopyLink/CopyLinkContainer";
+import { FavouriteToggleContainer } from "../FavouriteToggle/FavouriteToggleContainer";
 import IconButton from "@material-ui/core/IconButton";
 import CloseIcon from "@material-ui/icons/Close";
-import { UserDetailsView } from "./UserDetailsView";
-
-const useStyles = makeStyles((theme) => ({
-  title: {
-    marginBottom: 15,
-  },
-  userDetails: {
-    marginTop: 40,
-  },
-  link: {
-    marginTop: 40,
-    height: 40,
-    width: "100%",
-    "& input": {
-      textAlign: "center",
-    },
-  },
-  imageContainer: {
-    "& img": {
-      maxWidth: "100%",
-    },
-    "& span": {
-      maxWidth: "100%",
-    },
-  },
-}));
+import { UserDetailsView } from "../UserDetails/UserDetailsView";
+import { useDetailsDialogStyles } from "./DetailsDialog.styles";
 
 /**
  * Display image details.
@@ -51,7 +26,7 @@ export const DetailsDialogView: FunctionComponent<{
   image: IImage;
   handleClose: () => void;
 }> = ({ isOpen, image, handleClose }) => {
-  const styles = useStyles();
+  const styles = useDetailsDialogStyles();
 
   return (
     <Dialog open={isOpen} onClose={handleClose} maxWidth="md" fullWidth>

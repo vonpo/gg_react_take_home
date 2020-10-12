@@ -1,7 +1,7 @@
 import { FunctionComponent } from "react";
 import Tooltip from "@material-ui/core/Tooltip";
 import { IconButton } from "@material-ui/core";
-import { FavIcon } from "../../icons/FavIcon";
+import { FavIcon } from "../../../icons/FavIcon";
 import * as React from "react";
 
 const FAV_IMAGE_WIDTH = 30;

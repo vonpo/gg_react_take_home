@@ -1,7 +1,7 @@
 import * as React from "react";
 import Snackbar from "@material-ui/core/Snackbar";
 import { FunctionComponent } from "react";
-import { useNotificationContext } from "../../contexts/notification";
+import { useNotificationContext } from "../../../contexts/notification";
 
 /**
  * Notification component display message to user.

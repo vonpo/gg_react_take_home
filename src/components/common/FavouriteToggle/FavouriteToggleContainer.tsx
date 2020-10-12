@@ -1,6 +1,6 @@
 import * as React from "react";
 import { FunctionComponent } from "react";
-import { useFavouriteContext } from "../../contexts/favourite";
+import { useFavouriteContext } from "../../../contexts/favourite";
 import { FavouriteToggleView } from "./FavouriteToggleView";
 
 /**
