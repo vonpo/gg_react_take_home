@@ -16,4 +16,10 @@ export const useHeaderStyles = makeStyles((theme) => ({
   searchBox: {
     flex: 1,
   },
+  favGridArea: { gridArea: "fav", backgroundColor: "white" },
+  emptyGridArea: { gridArea: "empty", backgroundColor: "white" },
+  link: { textDecoration: "none" },
+  linkLabel: { marginRight: 25 },
+  favButton: { padding: 5, borderRadius: 15 },
+  favButtonLabel: { marginLeft: 5 },
 }));

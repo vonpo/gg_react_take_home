@@ -21,8 +21,19 @@ const FavouriteContext = createContext<{
   removeAction: (id: string) => {},
 });
 
+/**
+ * Use fav context.
+ */
 export const useFavouriteContext = () => useContext(FavouriteContext);
 
+/**
+ * Favourite context wrapper.
+ *
+ * @param {IStorage} storage
+ * @param [Object] children
+ *
+ * @constructor
+ */
 export const FavouriteContextProvider: FunctionComponent<{
   storage?: IStorage;
 }> = ({ storage, children }) => {

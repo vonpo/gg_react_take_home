@@ -13,7 +13,7 @@ export const HeaderView: FunctionComponent = () => {
 
   return (
     <>
-      <Grid style={{ gridArea: "empty", backgroundColor: "white" }} />
+      <Grid className={styles.emptyGridArea} />
       <Grid
         container
         direction="row"
@@ -21,8 +21,8 @@ export const HeaderView: FunctionComponent = () => {
         className={styles.search}
       >
         <Grid item className={styles.header}>
-          <Link to="/" style={{ textDecoration: "none" }}>
-            <Typography variant="h1" style={{ marginRight: 25 }}>
+          <Link to="/" className={styles.link}>
+            <Typography variant="h1" className={styles.linkLabel}>
               M-GIPHY
             </Typography>
           </Link>
@@ -36,12 +36,12 @@ export const HeaderView: FunctionComponent = () => {
         direction="row"
         alignItems="center"
         justify="center"
-        style={{ gridArea: "fav", backgroundColor: "white" }}
+        className={styles.favGridArea}
       >
-        <Link to="/favourite" style={{ textDecoration: "none" }}>
-          <ButtonBase style={{ padding: 5, borderRadius: 15 }}>
+        <Link to="/favourite" className={styles.link}>
+          <ButtonBase className={styles.favButton}>
             <FavIcon height={36} width={40} />
-            <Typography variant="h2" style={{ marginLeft: 5 }}>
+            <Typography variant="h2" className={styles.favButtonLabel}>
               Favourites
             </Typography>
           </ButtonBase>

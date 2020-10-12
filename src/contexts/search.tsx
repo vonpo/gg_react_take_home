@@ -20,8 +20,19 @@ const SearchContext = createContext<{
   setSearchAction: (_: string) => {},
 });
 
+/**
+ * Use search context.
+ */
 export const useSearchContext = () => useContext(SearchContext);
 
+/**
+ * Search context wrapper.
+ *
+ * @param {string} searchQuery
+ * @param [Object] children
+ *
+ * @constructor
+ */
 export const SearchContextProvider: FunctionComponent<{
   searchQuery: string;
 }> = ({ searchQuery, children }) => {

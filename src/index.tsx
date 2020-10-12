@@ -1,9 +1,9 @@
 import * as React from "react";
 import * as ReactDOM from "react-dom";
-import { AppContainer } from "./components/common/App/AppContainer";
+import { AppView } from "./components/common/App/AppView";
 
 const element = document.createElement("div");
 
 document.body.appendChild(element);
 
-ReactDOM.render(<AppContainer />, element);
+ReactDOM.render(<AppView />, element);

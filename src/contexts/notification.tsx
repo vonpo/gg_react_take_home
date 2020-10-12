@@ -15,8 +15,18 @@ const NotificationContext = createContext<{
   displayAction: (_: string) => {},
 });
 
+/**
+ * Use notification context.
+ */
 export const useNotificationContext = () => useContext(NotificationContext);
 
+/**
+ * Notification context wrapper.
+ *
+ * @param [Object] children
+ *
+ * @constructor
+ */
 export const NotificationContextProvider: FunctionComponent = ({
   children,
 }) => {
