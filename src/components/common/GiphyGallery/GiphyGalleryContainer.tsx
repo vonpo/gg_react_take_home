@@ -1,6 +1,6 @@
 import { FunctionComponent, useEffect, useState } from "react";
 import { useSearchContext } from "../../../contexts/search";
-import { InifiteScrollResourceContainer } from "../InifiteScrollResourceContainer/InifiteScrollResourceContainer";
+import { InifiteScrollResourceContainer } from "../InifiteScrollResource/InifiteScrollResourceContainer";
 import { ImageGridContainer } from "../ImageGrid/ImageGridContainer";
 import { ImageWithOptionsView } from "../Image/ImageWithOptionsView";
 import * as React from "react";
